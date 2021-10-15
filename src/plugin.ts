@@ -25,8 +25,6 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _nightcoreData = {
-                        op: "filters",
-                        guildId: this.guild,
                         timescale: {
                             speed: 1.2999999523162842,
                             pitch: 1.2999999523162842,
@@ -35,8 +33,6 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _vaporwaveData = {
-                        op: "filters",
-                        guildId: this.guild,
                         equalizer: [
                             {band: 1, gain: 0.3},
                             {band: 0, gain: 0.3},
@@ -46,8 +42,6 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _bassboostData = {
-                        op: "filters",
-                        guildId: this.guild,
                         equalizer: [
                             {band: 0, gain: 0.6},
                             {band: 1, gain: 0.67},
@@ -67,8 +61,6 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _popData = {
-                        op: "filters",
-                        guildId: this.guild,
                         equalizer: [
                             {band: 0, gain: 0.65},
                             {band: 1, gain: 0.45},
@@ -88,16 +80,12 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _softData = {
-                        op: "filters",
-                        guildId: this.guild,
                         lowPass: {
                             smoothing: 20.0
                         }
                     };
 
                     private readonly _treblebassData = {
-                        op: "filters",
-                        guildId: this.guild,
                         equalizer: [
                             {band: 0, gain: 0.6},
                             {band: 1, gain: 0.67},
@@ -117,16 +105,12 @@ export class customFilter extends Plugin {
                     };
 
                     private readonly _eightDData = {
-                        op: "filters",
-                        guildId: this.guild,
                         rotation: {
                             rotationHz: 0.2
                         }
                     }
 
                     private readonly _karaokeData = {
-                        op: "filters",
-                        guildId: this.guild,
                         karaoke: {
                             level: 1.0,
                             monoLevel: 1.0,
@@ -136,8 +120,6 @@ export class customFilter extends Plugin {
                     }
 
                     private readonly _vibratoData = {
-                        op: "filters",
-                        guildId: this.guild,
                         vibrato: {
                             frequency: 10,
                             depth: 0.9
@@ -145,8 +127,6 @@ export class customFilter extends Plugin {
                     }
 
                     private readonly _tremoloData = {
-                        op: "filters",
-                        guildId: this.guild,
                         tremolo: {
                             frequency: 10,
                             depth: 0.5
@@ -154,164 +134,78 @@ export class customFilter extends Plugin {
                     }
 
                     //Setting the filter
-                    set nightcore(status: boolean) {
+                    set nightcore(status:boolean) {
                         this._nightcore = status;
-                        if (status) {
+                        if(status){
+                            // Disabled due to same filter (timescale)
                             this._vaporwave = false;
-                            this._bassboost = false;
-                            this._soft = false;
-                            this._pop = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._nightcoreData);
-                        } else this._resetnode();
+                        }
+                        this._buildfilter();
                     }
-
-                    set vaporwave(status: boolean) {
+                    set vaporwave(status:boolean) {
                         this._vaporwave = status;
-                        if (status) {
-                            this._bassboost = false;
-                            this._nightcore = false;
-                            this._soft = false;
+                        if(status){
+                            // Disabled due to same filter (equalizer)
+                            this._bassboost = false; 
                             this._pop = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
+                            this._treblebass = false;					
+                            // Disabled due to same filter (tremolo)
                             this._tremolo = false;
-                            this.node.send(this._vaporwaveData);
-                        } else this._resetnode();
+                        }
+                        this._buildfilter();
                     }
-
-                    set bassboost(status: boolean) {
+                    set bassboost(status:boolean) {
                         this._bassboost = status;
-                        if (status) {
-                            this._nightcore = false;
+                        if(status){
+                            // Disabled due to same filter (equalizer)
                             this._vaporwave = false;
-                            this._soft = false;
                             this._pop = false;
                             this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._bassboostData);
-                        } else this._resetnode();
+                        }
+                        this._buildfilter();
                     }
-
-                    set pop(status: boolean) {
+                    set pop(status:boolean) {
                         this._pop = status;
-                        if (status) {
-                            this._nightcore = false;
+                        if(status){
+                            // Disabled due to same filter (equalizer)
+                            this._bassboost = false; 
                             this._vaporwave = false;
-                            this._bassboost = false;
-                            this._soft = false;
                             this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._popData);
-                        } else this._resetnode();
+                        }
+                        this._buildfilter();
                     }
-
-                    set soft(status: boolean) {
+                    set soft(status:boolean) {
                         this._soft = status;
-                        if (status) {
-                            this._nightcore = false;
-                            this._vaporwave = false;
-                            this._bassboost = false;
-                            this._pop = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._softData);
-                        } else this._resetnode();
                     }
-
-                    set treblebass(status: boolean) {
+                    set treblebass(status:boolean) {
                         this._treblebass = status;
                         if(status){
-                            this._nightcore = false;
-                            this._vaporwave = false;
-                            this._bassboost = false;
+                            // Disabled due to same filter (equalizer)
+                            this._bassboost = false; 
                             this._pop = false;
-                            this._soft = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._treblebassData);
-                        } else this._resetnode();
+                            this._vaporwave = false;
+                        }
+                        this._buildfilter();
                     }
-
-                    set eightD(status:boolean){
+                    set eightD(status:boolean) {
                         this._eightD = status;
-                        if(status){
-                            this._nightcore = false;
-                            this._vaporwave = false;
-                            this._bassboost = false;
-                            this._pop = false;
-                            this._soft = false;
-                            this._treblebass = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._eightDData);
-                        } else this._resetnode();
+                        this._buildfilter();
                     }
-
-                    set karaoke(status:boolean){
+                    set karaoke(status:boolean) {
                         this._karaoke = status;
-                        if(status){
-                            this._nightcore = false;
-                            this._vaporwave = false;
-                            this._bassboost = false;
-                            this._pop = false;
-                            this._soft = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._vibrato = false;
-                            this._tremolo = false;
-                            this.node.send(this._karaokeData)
-                        } else this._resetnode();
+                        this._buildfilter();
                     }
-
-                    set vibrato(status:boolean){
+                    set vibrato(status:boolean) {
                         this._vibrato = status;
-                        if(status){
-                            this._nightcore = false;
-                            this._vaporwave = false;
-                            this._bassboost = false;
-                            this._pop = false;
-                            this._soft = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._tremolo = false;
-                            this.node.send(this._vibratoData)
-                        } else this._resetnode();
+                        this._buildfilter();
                     }
-
-                    set tremolo(status:boolean){
+                    set tremolo(status:boolean) {
                         this._tremolo = status;
                         if(status){
-                            this._nightcore = false;
+                            // Disabled due to same filter (tremolo)
                             this._vaporwave = false;
-                            this._bassboost = false;
-                            this._pop = false;
-                            this._soft = false;
-                            this._treblebass = false;
-                            this._eightD = false;
-                            this._karaoke = false;
-                            this._vibrato = false;
-                            this.node.send(this._tremoloData)
-                        } else this._resetnode();
+                        }
+                        this._buildfilter();
                     }
 
                     //Get Filter Status
@@ -353,6 +247,29 @@ export class customFilter extends Plugin {
 
                     get tremolo(){
                         return this._tremolo;
+                    }
+
+                    //Build Filter
+                    private _buildfilter(){
+                        var filters = {
+                            op: "filters",
+                            guildId: this.guild
+                        };
+                        if(this._nightcore) filters.timescale = this._nightcoreData.timescale;
+                        if(this._vaporwave) {
+                            filters.equalizer = this._vaporwaveData.equalizer;
+                            filters.timescale = this._vaporwaveData.timescale;
+                            filters.tremolo = this._vaporwaveData.tremolo;
+                        }
+                        if(this._bassboost) filters.equalizer = this._bassboostData.equalizer;
+                        if(this._soft) filters.lowPass = this._softData.lowPass;
+                        if(this._pop) filters.equalizer = this._popData.equalizer;
+                        if(this._treblebass) filters.equalizer = this._treblebassData.equalizer;
+                        if(this._eightD) filters.rotation = this._eightDData.rotation;
+                        if(this._karaoke) filters.karaoke = this._karaokeData.karaoke;
+                        if(this._vibrato) filters.vibrato = this._vibratoData.vibrato;
+                        if(this._tremolo) filters.tremolo = this._tremoloData.tremolo;
+                        this.node.send(filters);
                     }
 
                     //Reset Everything
