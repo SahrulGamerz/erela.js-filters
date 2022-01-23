@@ -43,39 +43,39 @@ export class customFilter extends Plugin {
 
                     private readonly _bassboostData = {
                         equalizer: [
-                            {band: 0, gain: 0.6},
-                            {band: 1, gain: 0.67},
-                            {band: 2, gain: 0.67},
-                            {band: 3, gain: 0},
-                            {band: 4, gain: -0.5},
-                            {band: 5, gain: 0.15},
-                            {band: 6, gain: -0.45},
-                            {band: 7, gain: 0.23},
-                            {band: 8, gain: 0.35},
-                            {band: 9, gain: 0.45},
-                            {band: 10, gain: 0.55},
-                            {band: 11, gain: 0.6},
-                            {band: 12, gain: 0.55},
-                            {band: 13, gain: 0},
+                            { band: 0, gain: 0.3 },
+                            { band: 1, gain: 0.4 },
+                            { band: 2, gain: 0.4 },
+                            { band: 3, gain: 0 },
+                            { band: 4, gain: -0.3 },
+                            { band: 5, gain: 0.15 },
+                            { band: 6, gain: -0.25 },
+                            { band: 7, gain: 0.03 },
+                            { band: 8, gain: 0.05 },
+                            { band: 9, gain: 0.05 },
+                            { band: 10, gain: 0.05 },
+                            { band: 11, gain: 0.0 },
+                            { band: 12, gain: 0.05 },
+                            { band: 13, gain: 0 },
                         ],
                     };
 
                     private readonly _popData = {
                         equalizer: [
-                            {band: 0, gain: 0.65},
-                            {band: 1, gain: 0.45},
-                            {band: 2, gain: -0.45},
-                            {band: 3, gain: -0.65},
-                            {band: 4, gain: -0.35},
-                            {band: 5, gain: 0.45},
-                            {band: 6, gain: 0.55},
-                            {band: 7, gain: 0.6},
-                            {band: 8, gain: 0.6},
-                            {band: 9, gain: 0.6},
-                            {band: 10, gain: 0},
-                            {band: 11, gain: 0},
-                            {band: 12, gain: 0},
-                            {band: 13, gain: 0},
+                            { band: 0, gain: 0.45 },
+                            { band: 1, gain: 0.25 },
+                            { band: 2, gain: -0.25 },
+                            { band: 3, gain: -0.45 },
+                            { band: 4, gain: -0.15 },
+                            { band: 5, gain: 0.25 },
+                            { band: 6, gain: 0.15 },
+                            { band: 7, gain: 0.4 },
+                            { band: 8, gain: 0.4 },
+                            { band: 9, gain: 0.4 },
+                            { band: 10, gain: 0 },
+                            { band: 11, gain: 0 },
+                            { band: 12, gain: 0 },
+                            { band: 13, gain: 0 },
                         ],
                     };
 
@@ -87,20 +87,20 @@ export class customFilter extends Plugin {
 
                     private readonly _treblebassData = {
                         equalizer: [
-                            {band: 0, gain: 0.6},
-                            {band: 1, gain: 0.67},
-                            {band: 2, gain: 0.67},
-                            {band: 3, gain: 0},
-                            {band: 4, gain: -0.5},
-                            {band: 5, gain: 0.15},
-                            {band: 6, gain: -0.45},
-                            {band: 7, gain: 0.23},
-                            {band: 8, gain: 0.35},
-                            {band: 9, gain: 0.45},
-                            {band: 10, gain: 0.55},
-                            {band: 11, gain: 0.6},
-                            {band: 12, gain: 0.55},
-                            {band: 13, gain: 0},
+                            { band: 0, gain: 0.4 },
+                            { band: 1, gain: 0.47 },
+                            { band: 2, gain: 0.47 },
+                            { band: 3, gain: 0 },
+                            { band: 4, gain: -0.3 },
+                            { band: 5, gain: 0.15 },
+                            { band: 6, gain: -0.25 },
+                            { band: 7, gain: 0.0 },
+                            { band: 8, gain: 0.05 },
+                            { band: 9, gain: 0.15 },
+                            { band: 10, gain: 0.25 },
+                            { band: 11, gain: 0.3 },
+                            { band: 12, gain: 0.25 },
+                            { band: 13, gain: 0 },
                         ],
                     };
 
@@ -142,6 +142,7 @@ export class customFilter extends Plugin {
                         }
                         this._buildfilter();
                     }
+
                     set vaporwave(status:boolean) {
                         this._vaporwave = status;
                         if(status){
@@ -154,6 +155,7 @@ export class customFilter extends Plugin {
                         }
                         this._buildfilter();
                     }
+
                     set bassboost(status:boolean) {
                         this._bassboost = status;
                         if(status){
@@ -164,6 +166,7 @@ export class customFilter extends Plugin {
                         }
                         this._buildfilter();
                     }
+
                     set pop(status:boolean) {
                         this._pop = status;
                         if(status){
@@ -174,9 +177,11 @@ export class customFilter extends Plugin {
                         }
                         this._buildfilter();
                     }
+
                     set soft(status:boolean) {
                         this._soft = status;
                     }
+
                     set treblebass(status:boolean) {
                         this._treblebass = status;
                         if(status){
@@ -187,18 +192,22 @@ export class customFilter extends Plugin {
                         }
                         this._buildfilter();
                     }
+
                     set eightD(status:boolean) {
                         this._eightD = status;
                         this._buildfilter();
                     }
+
                     set karaoke(status:boolean) {
                         this._karaoke = status;
                         this._buildfilter();
                     }
+
                     set vibrato(status:boolean) {
                         this._vibrato = status;
                         this._buildfilter();
                     }
+                    
                     set tremolo(status:boolean) {
                         this._tremolo = status;
                         if(status){

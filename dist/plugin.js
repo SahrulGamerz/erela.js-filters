@@ -18,18 +18,21 @@ class customFilter extends erela_js_1.Plugin {
                 this._karaoke = false;
                 this._vibrato = false;
                 this._tremolo = false;
+
                 //Private Filter Data
                 this._resetData = {
                     op: "filters",
                     guildId: this.guild,
                 };
+                
                 this._nightcoreData = {
                     timescale: {
-                        speed: 1.2999999523162842,
-                        pitch: 1.2999999523162842,
-                        rate: 1,
-                    },
+                            speed: 1.2999999523162842,
+                            pitch: 1.2999999523162842,
+                            rate: 1,
+                        },
                 };
+
                 this._vaporwaveData = {
                     equalizer: [
                         { band: 1, gain: 0.3 },
@@ -38,11 +41,12 @@ class customFilter extends erela_js_1.Plugin {
                     timescale: { pitch: 0.5 },
                     tremolo: { depth: 0.3, frequency: 14 },
                 };
+
                 this._bassboostData = {
                     equalizer: [
-                        { band: 0, gain: 0.4 },
-                        { band: 1, gain: 0.47 },
-                        { band: 2, gain: 0.47 },
+                        { band: 0, gain: 0.3 },
+                        { band: 1, gain: 0.4 },
+                        { band: 2, gain: 0.4 },
                         { band: 3, gain: 0 },
                         { band: 4, gain: -0.3 },
                         { band: 5, gain: 0.15 },
@@ -56,6 +60,7 @@ class customFilter extends erela_js_1.Plugin {
                         { band: 13, gain: 0 },
                     ],
                 };
+
                 this._popData = {
                     equalizer: [
                         { band: 0, gain: 0.45 },
@@ -74,11 +79,13 @@ class customFilter extends erela_js_1.Plugin {
                         { band: 13, gain: 0 },
                     ],
                 };
+
                 this._softData = {
                     lowPass: {
                         smoothing: 20.0
                     }
                 };
+
                 this._treblebassData = {
                     equalizer: [
                         { band: 0, gain: 0.4 },
@@ -97,11 +104,13 @@ class customFilter extends erela_js_1.Plugin {
                         { band: 13, gain: 0 },
                     ],
                 };
+
                 this._eightDData = {
                     rotation: {
                         rotationHz: 0.2
                     }
                 };
+
                 this._karaokeData = {
                     karaoke: {
                         level: 1.0,
@@ -110,12 +119,14 @@ class customFilter extends erela_js_1.Plugin {
                         filterWidth: 100.0
                     },
                 };
+
                 this._vibratoData = {
                     vibrato: {
                         frequency: 10,
                         depth: 0.9
                     }
                 };
+
                 this._tremoloData = {
                     tremolo: {
                         frequency: 10,
@@ -133,6 +144,7 @@ class customFilter extends erela_js_1.Plugin {
 				}
 				this._buildfilter();
             }
+
             set vaporwave(status) {
                 this._vaporwave = status;
 				if(status){
@@ -145,6 +157,7 @@ class customFilter extends erela_js_1.Plugin {
 				}
 				this._buildfilter();
             }
+
             set bassboost(status) {
                 this._bassboost = status;
 				if(status){
@@ -155,6 +168,7 @@ class customFilter extends erela_js_1.Plugin {
 				}
 				this._buildfilter();
             }
+
             set pop(status) {
                 this._pop = status;
 				if(status){
@@ -165,9 +179,11 @@ class customFilter extends erela_js_1.Plugin {
 				}
 				this._buildfilter();
             }
+
             set soft(status) {
                 this._soft = status;
             }
+
             set treblebass(status) {
                 this._treblebass = status;
 				if(status){
@@ -178,18 +194,22 @@ class customFilter extends erela_js_1.Plugin {
 				}
 				this._buildfilter();
             }
+
             set eightD(status) {
                 this._eightD = status;
 				this._buildfilter();
             }
+
             set karaoke(status) {
                 this._karaoke = status;
 				this._buildfilter();
             }
+
             set vibrato(status) {
                 this._vibrato = status;
 				this._buildfilter();
             }
+
             set tremolo(status) {
                 this._tremolo = status;
 				if(status){
@@ -203,30 +223,39 @@ class customFilter extends erela_js_1.Plugin {
             get nightcore() {
                 return this._nightcore;
             }
+
             get vaporwave() {
                 return this._vaporwave;
             }
+
             get bassboost() {
                 return this._bassboost;
             }
+
             get pop() {
                 return this._pop;
             }
+
             get soft() {
                 return this._soft;
             }
+
             get treblebass() {
                 return this._treblebass;
             }
+
             get eightD() {
                 return this._eightD;
             }
+
             get karaoke() {
                 return this._karaoke;
             }
+
             get vibrato() {
                 return this._vibrato;
             }
+
             get tremolo() {
                 return this._tremolo;
             }
